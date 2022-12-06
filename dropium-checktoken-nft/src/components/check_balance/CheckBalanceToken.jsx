@@ -8,9 +8,9 @@ import {
 } from "@solana/web3.js";
 import { Button, Alert, Space } from "antd";
 
-export default function CheckBalancePhantom() {
+export default function CheckBalanceToken() {
   const [tokenBalance, setTokenBalance] = useState("__");
-  const connection = new Connection(clusterApiUrl("devnet"));
+  const connection = new Connection(clusterApiUrl("mainnet-beta"));
   const [walletAddress, setWalletAddress] = useState("");
 
   // Rate Limits#
@@ -20,24 +20,24 @@ export default function CheckBalancePhantom() {
   // Maximum connection rate per 10 seconds per IP: 40
   // Maximum amount of data per 30 second: 100 MB
 
-  const onclickBalancePhantom = async () => {
+  const onclickBalanceTokenPhantom = async () => {
     if (window.solana.isConnected === true) {
-      setWalletAddress(window.solana.publicKey.toString());
-      const tokenPublicKey = new PublicKey(`${walletAddress}`);
+      setWalletAddress("6iPeFvRyjh1Qp5qYriQavPHJ6UGApxR2mfFfGEAGJcns");
+      const tokenPublicKey = new PublicKey("6iPeFvRyjh1Qp5qYriQavPHJ6UGApxR2mfFfGEAGJcns");
       console.log(walletAddress);
       console.log(tokenPublicKey);
-      const checkBalance = await connection.getBalance(tokenPublicKey);
-      setTokenBalance(checkBalance);
-      console.log(tokenBalance);
-      console.log(`${tokenBalance / LAMPORTS_PER_SOL} SOL`);
+      const checkBalanceToken = await connection.getTokenAccountBalance(tokenPublicKey);
+      setTokenBalance(checkBalanceToken);
+      console.log(checkBalanceToken);
+      console.log(`decimals: ${checkBalanceToken.value.decimals}, amount: ${checkBalanceToken.value.amount}`);
     } else {
       console.log("pls connect wallet A");
     }
   };
   return (
     <Container>
-      <Button type="primary" onClick={onclickBalancePhantom}>
-        Check Phantom Balance
+      <Button type="primary" onClick={onclickBalanceTokenPhantom}>
+        Check Phantom Balance Token
       </Button>
       <span>
         {" :"} {`${tokenBalance / LAMPORTS_PER_SOL} SOL`}

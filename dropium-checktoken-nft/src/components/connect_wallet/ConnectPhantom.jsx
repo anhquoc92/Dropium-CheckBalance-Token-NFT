@@ -16,7 +16,6 @@ export default function ConnectPhantom() {
       console.log("Connected with Public Key:", response.publicKey.toString());
       console.log(response);
       setWalletAddress(response.public.toString());
-      
     } else {
       alert("Solana object not found! Get a Phantom Wallet 👻");
     }
@@ -33,6 +32,7 @@ export default function ConnectPhantom() {
     }
   };
 
+
   useEffect(() => {
     const onLoad = async () => {
       await checkIfWalletIsConnected();
@@ -47,7 +47,9 @@ export default function ConnectPhantom() {
         <Button type="primary" onClick={connectWallet}>
           {connButtonConnect}
         </Button>
-        <div className="header-wallet">{walletAddress}</div>
+      </div>
+      <div>
+        <span className="header-wallet">{walletAddress}</span>
       </div>
     </Container>
   );
@@ -55,4 +57,8 @@ export default function ConnectPhantom() {
 
 const Container = styled.div`
   display: flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
 `;
