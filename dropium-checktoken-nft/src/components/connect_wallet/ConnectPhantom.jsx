@@ -25,9 +25,7 @@ export default function ConnectPhantom() {
     const { solana } = window;
     if (solana) {
       const response = await solana.connect();
-      console.log("Connected with Public Key:", response.publicKey.toString());
       setWalletAddress(response.publicKey.toString());
-      console.log(response);
       setConnButtonConnect("Phantom Wallet Connected");
     }
   };

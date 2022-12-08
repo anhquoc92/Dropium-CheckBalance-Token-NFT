@@ -1,17 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import CheckBalancePhantom from "./check_balance/CheckBalancePhantom";
-import CheckBalanceToken from "./check_balance/CheckBalanceToken";
-
-
+// import GetPortfolio from "./check/GetPortfolio";
 import ConnectPhantom from "./connect_wallet/ConnectPhantom";
 
 export default function Home() {
   return (
     <Container>
       <ConnectPhantom />
+      
       <CheckBalancePhantom />
-      <CheckBalanceToken />
+      {/* <GetPortfolio/> */}
     </Container>
   );
 }
